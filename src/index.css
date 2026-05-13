@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: 248 246 242;
+    --color-panel: 255 255 255;
+    --color-text: 17 24 39;
+    --color-muted: 107 114 128;
+    --color-line: 229 231 235;
+    --color-accent: 216 165 139;
+    --color-interactive: 139 92 246;
+    --grid-line: rgba(229, 231, 235, 0.72);
+    --mesh-bg: radial-gradient(circle at 20% 20%, rgba(216, 165, 139, 0.22), transparent 28%), radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.12), transparent 24%), linear-gradient(135deg, #f8f6f2 0%, #ffffff 54%, #f8f6f2 100%);
+    color-scheme: light;
+  }
+
+  .dark {
+    --color-bg: 7 17 31;
+    --color-panel: 15 23 42;
+    --color-text: 248 250 252;
+    --color-muted: 148 163 184;
+    --color-line: 30 41 59;
+    --color-accent: 216 165 139;
+    --color-interactive: 139 92 246;
+    --grid-line: rgba(148, 163, 184, 0.08);
+    --mesh-bg: radial-gradient(circle at 20% 20%, rgba(216, 165, 139, 0.16), transparent 28%), radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.16), transparent 24%), linear-gradient(135deg, #07111f 0%, #0f172a 54%, #07111f 100%);
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: rgb(var(--color-bg));
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+      rgb(var(--color-bg));
+    background-size: 42px 42px;
+    color: rgb(var(--color-text));
+    font-family: Inter, system-ui, sans-serif;
+    text-rendering: geometricPrecision;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    background: rgba(216, 165, 139, 0.32);
+    color: rgb(var(--color-text));
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply relative mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28;
+  }
+
+  .section-heading {
+    @apply mb-12 max-w-3xl;
+  }
+
+  .section-heading h2 {
+    @apply mt-4 font-display text-3xl font-bold leading-tight text-white sm:text-5xl;
+  }
+
+  .section-heading p {
+    @apply mt-5 text-base leading-8 text-muted sm:text-lg;
+  }
+
+  .eyebrow {
+    @apply inline-flex rounded-full border border-white/10 bg-panel px-3 py-2 text-xs font-bold uppercase tracking-[0.24em] text-electric;
+  }
+
+  .nav-link {
+    @apply rounded-full px-4 py-2 text-sm font-semibold text-muted transition hover:bg-violet/10 hover:text-white;
+  }
+
+  .social-pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-panel px-4 py-2 text-muted transition hover:border-violet/50 hover:text-white;
+  }
+
+  .hero-frame {
+    @apply relative aspect-[0.86] overflow-hidden rounded-[2.25rem] border border-white/[0.12] bg-panel shadow-violet;
+  }
+
+  .hero-frame::after {
+    content: '';
+    @apply absolute inset-0 rounded-[2.25rem] ring-1 ring-inset ring-white/10;
+  }
+
+  .feature-card {
+    @apply flex gap-4 rounded-[2rem] border border-white/10 bg-panel p-6 transition hover:-translate-y-1 hover:border-violet/50 hover:bg-panel;
+  }
+
+  .feature-icon,
+  .timeline-icon,
+  .contact-icon {
+    @apply grid size-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-electric/20 to-violet/25 text-electric ring-1 ring-white/10;
+  }
+
+  .feature-card h3,
+  .skill-card h3 {
+    @apply font-display text-xl font-bold text-white;
+  }
+
+  .feature-card p {
+    @apply mt-2 leading-7 text-muted;
+  }
+
+  .skill-card {
+    @apply rounded-[1.75rem] border border-white/10 bg-panel p-3 transition hover:-translate-y-1 hover:border-violet/40 hover:bg-panel;
+  }
+
+  .skill-card span {
+    @apply mt-1 block text-sm text-muted;
+  }
+
+  .skill-card strong {
+    @apply font-display text-xl text-electric;
+  }
+
+  .project-card {
+    @apply overflow-hidden rounded-[2rem] border border-white/10 bg-panel/80 shadow-2xl shadow-black/20 transition duration-300 hover:border-violet/40;
+  }
+
+  .project-cover {
+    @apply min-h-44 p-6;
+  }
+
+  .project-link {
+    @apply grid size-11 shrink-0 place-items-center rounded-full border border-white/10 bg-panel text-white transition hover:border-violet/50 hover:bg-violet hover:text-ink;
+  }
+
+  .company-banner {
+    @apply relative overflow-hidden rounded-[2rem] border border-white/10 bg-panel p-6 shadow-2xl shadow-black/20 transition duration-300 sm:p-8 lg:p-10;
+  }
+
+  .company-banner:hover {
+    @apply border-violet/40 shadow-violet;
+  }
+
+  .company-orb {
+    @apply absolute -right-24 -top-24 size-72 rounded-full bg-gradient-to-br from-electric/30 via-violet/20 to-transparent blur-3xl;
+  }
+
+  .company-icon {
+    @apply grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-electric/25 to-violet/20 text-electric ring-1 ring-white/10;
+  }
+
+  .company-panel {
+    @apply rounded-[1.5rem] border border-white/10 bg-ink p-5;
+  }
+
+  .company-chip {
+    @apply rounded-2xl border border-white/10 bg-panel px-4 py-3 text-center text-sm font-semibold text-muted;
+  }
+
+  .company-button {
+    @apply mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-electric px-5 text-sm font-bold text-white shadow-glow transition duration-300 hover:bg-violet hover:text-ink sm:w-auto;
+  }
+
+  .timeline-card {
+    @apply flex gap-5 rounded-[2rem] border border-white/10 bg-panel p-6 transition hover:border-violet/50 hover:bg-panel;
+  }
+
+  .contact-card {
+    @apply flex items-center gap-4 rounded-[1.5rem] border border-white/10 bg-panel p-5 transition hover:-translate-y-1 hover:border-violet/50 hover:bg-panel;
+  }
+
+  .contact-card small {
+    @apply block text-xs font-bold uppercase tracking-[0.2em] text-muted;
+  }
+
+  .contact-card strong {
+    @apply mt-1 block break-words text-sm font-semibold text-white sm:text-base;
+  }
+
+  .footer-link {
+    @apply rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-muted transition hover:border-violet/50 hover:text-white;
+  }
+}
